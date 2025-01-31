@@ -93,7 +93,7 @@ int main(){
 ##### 进位```t = (A[i] * b + t) / 10;```
 ##### 结果位数```C[i] = (A[i] * b + t) % 10;```
 ```
-//高精度乘法模板
+//高精度乘法模板：高精度 * 整数
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -120,6 +120,46 @@ int main(){
     for(int i = a.size() - 1; i >= 0; i --) A.push_back(a[i] - '0');
 
     auto C = mul(A, b);
+
+    for(int i = C.size() - 1; i >= 0; i --) printf("%d",C[i]);
+
+    return 0;
+}
+```
+#### 高精度乘法：高精度 * 高精度
+#### 进位：```t = C[i + j] / 10;```
+#### 结果位数：```C[i + j] = C[i + j] % 10;```
+```
+////高精度乘法模板：高精度 * 高精度
+#include<iostream>
+#include<vector>
+using namespace std;
+const int N = 1e5 + 10;
+
+vector<int>mul(vector<int> &A, vector<int> &B){
+    vector<int> C(N, 0);
+    int t = 0;
+    for(int i = 0; i < A.size(); i ++){
+        t = 0;                                           //每前移一层进位都要更新
+        for(int j = 0; j < B.size(); j ++){
+            C[i + j] = C[i + j] + A[i] * B[j] + t;       //注意：三个数相加，A[i]*B[i],t(上一位的进位),C[i + j](前一次第i + j位上的数值)
+            t = C[i + j] / 10;
+            C[i + j] = C[i + j] % 10;
+        }
+        C[i + B.size()] = t;                             ////每前移一层都要为最高位添加进位
+    }
+    while(C.size() > 1 && C.back() == 0) C.pop_back();
+    return C;
+}
+
+int main(){
+    string a,b;
+    vector<int> A,B;
+    cin>>a>>b;
+    for(int i = a.size() - 1; i >= 0; i --) A.push_back(a[i] - '0');
+    for(int i = b.size() - 1; i >= 0; i --) B.push_back(b[i] - '0');
+
+    auto C = mul(A, B);
 
     for(int i = C.size() - 1; i >= 0; i --) printf("%d",C[i]);
 
