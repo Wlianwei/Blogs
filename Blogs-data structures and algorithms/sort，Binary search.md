@@ -8,7 +8,7 @@
 2.递归处理子问题
 3.子问题合并
 
-```
+```cpp
 void quick_sort(int q[], int l, int r)
 {
     //递归的终止情况
@@ -43,7 +43,7 @@ void quick_sort(int q[], int l, int r)
 2.递归处理子问题
 3.子问题合并
 
-```
+```cpp
 #include<iostream>
 using namespace std;
 const int N=1e5+10;
@@ -90,7 +90,7 @@ int main(){
 2：找小于等于数的最后一个数 （满足某个条件的最后一个数）
 3.查找最大值 （满足该边界的右边界）
 4.查找最小值 (满足该边界的左边界)
-```
+```cpp
 模板一:查找左边界
 bool check(int x) {/* ... */} // 检查x是否满足某种性质
 
@@ -108,7 +108,7 @@ int SR(int l, int r)
 
 ```
 
-```
+```cpp
 模板二：查找右边界
 bool check(int x) {/* ... */} // 检查x是否满足某种性质
 

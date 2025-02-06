@@ -3,7 +3,7 @@
 ##### 进位```t = t / 10;```
 ##### 结果位数```C[i] = t % 10;```
 
-```
+```cpp
 //高精度加法模板
 #include<iostream>
 #include<vector>
@@ -41,7 +41,7 @@ int main(){
 #### 高精度减法：高精度A - 高精度B(A >= B)
 ##### 借位```if(t < 0) t = 1; else t = 0;```
 ##### 结果位数```C[i] = (t + 10) % 10;```
-```
+```cpp
 //高精度减法模板
 #include<iostream>
 #include<vector>
@@ -92,7 +92,7 @@ int main(){
 #### 高精度乘法：高精度 * 整数
 ##### 进位```t = (A[i] * b + t) / 10;```
 ##### 结果位数```C[i] = (A[i] * b + t) % 10;```
-```
+```cpp
 //高精度乘法模板：高精度 * 整数
 #include<iostream>
 #include<vector>
@@ -129,7 +129,7 @@ int main(){
 #### 高精度乘法：高精度 * 高精度
 #### 进位：```t = C[i + j] / 10;```
 #### 结果位数：```C[i + j] = C[i + j] % 10;```
-```
+```cpp
 ////高精度乘法模板：高精度 * 高精度
 #include<iostream>
 #include<vector>
@@ -170,7 +170,7 @@ int main(){
 #### 高精度除法：高精度 / 整数
 ##### 余数```r = (r * 10 + A[i]) % b```
 ##### 结果位数```C[i] = (r * 10 + A[i]) / b```
-```
+```cpp
 高精度除法模板
 #include<iostream>
 #include<vector>

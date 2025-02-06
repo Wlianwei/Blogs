@@ -5,7 +5,7 @@
 ![img](https://img2023.cnblogs.com/blog/3583913/202501/3583913-20250128090612981-930264987.png)
 
 >按键的操作分为按键下降沿，上升沿和是否一直按下三个状态。代码实现如下：
-```
+```cpp
 //变量声明
 unsigned char key_val,key_down,key_up,key_old;//全局变量
 //读按键函数
