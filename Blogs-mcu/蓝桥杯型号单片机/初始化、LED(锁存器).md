@@ -51,13 +51,13 @@ void Led_Disp(unsigned char addr, enable){
     static unsigned char tmp = 0x00;
     static unsigned char tmp_old = 0xff;
     if(enable)
-        tmp |= 0x01 << (addr - 1); 
+        tmp |= 0x01 << addr; 
     else
-        tmp &= 0x01 << (addr - 1);
+        tmp &= ~(0x01 << addr);
    //将tmp值赋给P0端口（条件tmp != tmp_old）
    if(tmp != tmp_old){
-        tmp = ~tmp;
-        P0 = tmp;
+        //注意注意注意
+        P0 = ~tmp;   //注意注意注意
         P2 = P2 & 0x1f | 0x80;
         P2 = P2 & 0x1f;
         tmp_old = tmp;
