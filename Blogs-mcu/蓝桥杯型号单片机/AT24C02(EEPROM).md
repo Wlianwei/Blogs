@@ -46,4 +46,40 @@ void EEPROM_Read(unsigned char *EEPROM_Sring, unsigned char addr, unsigned char 
     }
     IIC_Stop();
 }
+
+
+//单字节写入与读出
+
+//================24C02单字节写入=================
+void Write_24C02(unsigned char addr, unsigned char dat)
+{
+  IIC_Start();          //起始信号
+  IIC_SendByte(0xa0);    //EEPROM的写设备地址
+  IIC_WaitAck();        //等待从机应答
+  IIC_SendByte(addr);    //内存单元地址
+  IIC_WaitAck();        //等待从机应答
+  IIC_SendByte(dat);    //内存写入数据
+  IIC_WaitAck();        //等待从机应答
+  IIC_Stop();            //停止信号
+}
+//================24C02单字节读取=================
+unsigned char Read_24C02(unsigned char addr)
+{
+  unsigned char tmp;
+  //首先，进行一个伪写操作，主要为送出读的地址
+  IIC_Start();          //起始信号
+  IIC_SendByte(0xa0);    //EEPROM的写设备地址
+  IIC_WaitAck();        //等待从机应答
+  IIC_SendByte(addr);    //送出要读的内存单元地址
+  IIC_WaitAck();        //等待从机应答
+  //然后，开始字节读操作
+  IIC_Start();          //起始信号
+  IIC_SendByte(0xa1);    //EEPROM的读设备地址
+  IIC_WaitAck();        //等待从机应答
+  tmp = IIC_RecByte();  //读取内存中的数据
+  IIC_SendAck(1);        //产生非应答信号
+  IIC_Stop();            //停止信号
+  return tmp;
+}
+
 ```
